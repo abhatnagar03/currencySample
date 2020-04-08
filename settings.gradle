@@ -1,3 +1,4 @@
 rootProject.name='CurrencySample'
 include ':app'
 include ':foundation'
+include ':feature_currency'

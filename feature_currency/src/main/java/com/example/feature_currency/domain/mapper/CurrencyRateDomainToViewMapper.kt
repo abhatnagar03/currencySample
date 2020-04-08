@@ -6,8 +6,8 @@ import com.example.feature_currency.presentation.rate.model.CurrencyRateModel
 import com.example.foundation.domain.DomainToViewMapper
 
 class CurrencyRateDomainToViewMapper :
-    DomainToViewMapper<Pair<RateModel, List<CurrencyNameModel>>, List<CurrencyRateModel>> {
-    override fun transform(domainModel: Pair<RateModel, List<CurrencyNameModel>>): List<CurrencyRateModel> {
+    DomainToViewMapper<Pair<RateModel, List<CurrencyNameModel>>, MutableList<CurrencyRateModel>> {
+    override fun transform(domainModel: Pair<RateModel, List<CurrencyNameModel>>): MutableList<CurrencyRateModel> {
         val rates = domainModel.first.currencies
         val currencyNames = domainModel.second
         return rates.map {
@@ -18,6 +18,6 @@ class CurrencyRateDomainToViewMapper :
                     currency.code == it.code
                 }?.name ?: ""
             )
-        }
+        }.toMutableList()
     }
 }

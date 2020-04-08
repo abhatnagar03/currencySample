@@ -14,8 +14,10 @@ internal class RateListViewModel(
     private val loadCurrencyRateListUseCase: LoadCurrencyRateListUseCase
 ) : BaseViewModel<List<CurrencyRateModel>>() {
 
+    private var mDefaultCurrencyRate = CurrencyRateModel("EUR", 1.0, "Euro")
+
     init {
-        loadSites("EUR")
+        loadSites(mDefaultCurrencyRate.code)
     }
 
     internal fun loadSites(baseCurrency: String) {
@@ -28,9 +30,10 @@ internal class RateListViewModel(
                 .applyLoadingBehavior(isLoading)
                 .applyErrorBehavior(networkError, error)
                 .subscribe({
+                    it.add(0, mDefaultCurrencyRate)
                     success.onNext(it)
                 }, {
-                    Timber.e(it, "loading rate list failed")
+                    Timber.e(it, "loading currency rate list failed")
                 })
         )
     }

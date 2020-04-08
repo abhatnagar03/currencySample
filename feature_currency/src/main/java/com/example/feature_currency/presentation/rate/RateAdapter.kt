@@ -46,6 +46,7 @@ internal class RateAdapter : RecyclerView.Adapter<RateAdapter.MyViewHolder>() {
             itemView.currencyName.text = item.name
             itemView.currencyCode.text = item.code
             itemView.rate.setText(item.rate.toString())
+            itemView.rate.setSelection(itemView.rate.text.length)
         }
     }
 }

@@ -14,7 +14,7 @@ internal class LoadCurrencyRateListUseCase(
     private val currencyNameListRepository: CurrencyNameListRepository,
     private val mapper: CurrencyRateDomainToViewMapper
 ) {
-    fun execute(baseCurrency: String): Observable<List<CurrencyRateModel>> =
+    fun execute(baseCurrency: String): Observable<MutableList<CurrencyRateModel>> =
         Observable.zip(
             rateListRepository.getRates(baseCurrency),
             currencyNameListRepository.getCurrencyNames(),

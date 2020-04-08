@@ -55,10 +55,11 @@ internal class RateAdapter : RecyclerView.Adapter<RateAdapter.MyViewHolder>() {
             itemView.rate.setText(item.rate.toString())
             itemView.rate.setSelection(itemView.rate.text.length)
 
-            itemView.setOnDebouncedClickListener {
+            itemView.rate.setOnTouchListener { _, _ ->
                 onDebouncedClickListener?.invoke(
                     item
                 )
+                false
             }
         }
     }

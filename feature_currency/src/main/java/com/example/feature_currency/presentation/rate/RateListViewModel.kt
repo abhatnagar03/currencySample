@@ -20,10 +20,17 @@ internal class RateListViewModel(
     private var prevDisposable: Disposable? = null
 
     private var baseCurrencySubject = BehaviorSubject.create<CurrencyRateModel>()
+    private var changedCurrencySubject = BehaviorSubject.create<CurrencyRateModel>()
 
     init {
         baseCurrencySubject.doOnNext {
             defaultCurrencyRate = CurrencyRateModel(it.code, 1.0, it.name)
+            prevDisposable?.dispose()
+            loadSites()
+        }.subscribe()
+
+        changedCurrencySubject.doOnNext {
+            defaultCurrencyRate = CurrencyRateModel(it.code, it.rate, it.name)
             prevDisposable?.dispose()
             loadSites()
         }.subscribe()
@@ -33,6 +40,10 @@ internal class RateListViewModel(
 
     internal fun setBaseCurrencyRate(model: CurrencyRateModel) {
         baseCurrencySubject.onNext(model)
+    }
+
+    fun setChangedCurrencyRate(it: CurrencyRateModel) {
+        changedCurrencySubject.onNext(it)
     }
 
     private fun loadSites() {

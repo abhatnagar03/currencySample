@@ -29,8 +29,12 @@ class RateListFragment : BaseContainerFragment() {
             recyclerView.scrollToPosition(0)
         }
 
+        rateAdapter.setOnRateChangedListener {
+            viewModel.setChangedCurrencyRate(it)
+        }
+
         disposables.add(viewModel.observeSuccess().subscribe {
-            rateAdapter.rateList = it.toMutableList()
+            rateAdapter.currencyRateList = it.toMutableList()
         })
     }
 }

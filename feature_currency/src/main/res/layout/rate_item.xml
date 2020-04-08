@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/flagImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="@dimen/space_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:paddingStart="@dimen/space_medium"
         android:paddingEnd="@dimen/space_medium"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/currencyName"
         app:layout_constraintEnd_toStartOf="@+id/rate"
@@ -62,12 +62,15 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/space_medium"
         android:gravity="center"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
         android:padding="@dimen/space_medium"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="1.123" />
+        tools:text="1.123"
+        tools:ignore="LabelFor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_url">https://www.countryflags.io/%s/flat/64.png</string>
+</resources>

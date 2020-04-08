@@ -18,4 +18,6 @@ val presentationModule = Kodein.Module("presentationModule") {
             )
         }
     }
+
+    bind<RateAdapter>() with singleton { RateAdapter() }
 }

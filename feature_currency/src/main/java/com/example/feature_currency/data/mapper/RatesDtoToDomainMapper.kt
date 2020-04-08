@@ -13,11 +13,13 @@ internal class RatesDtoToDomainMapper : DataToDomainMapper<RateDto, RateModel> {
             currencies = transformCurrencies(dataModel.currencies)
         )
 
-    private fun transformCurrencies(model: MutableList<CurrencyDto>?): MutableList<CurrencyModel>? =
-        model?.map {
+    private fun transformCurrencies(model: MutableList<CurrencyDto>?): MutableList<CurrencyModel> =
+        model?.filter {
+            it.name?.isNotBlank() == true
+        }?.map {
             CurrencyModel(
-                name = it.name,
+                code = it.name!!,
                 rate = it.rate
             )
-        }?.toMutableList()
+        }?.toMutableList() ?: mutableListOf()
 }

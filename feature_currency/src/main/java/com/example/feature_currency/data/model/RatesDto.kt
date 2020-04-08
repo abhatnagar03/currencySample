@@ -1,7 +1,7 @@
 package com.example.feature_currency.data.model
 
 data class RateDto(
-    val base: String? = null,
+    val base: String,
     val currencies: MutableList<CurrencyDto>? = null
 )
 

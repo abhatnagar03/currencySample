@@ -1,5 +1,7 @@
 package com.example.currencysample
 
+import com.example.feature_currency.data.model.CurrenciesDto
+import com.example.feature_currency.data.model.CurrencyNamesDeserializer
 import com.example.feature_currency.data.model.RateDeserializer
 import com.example.feature_currency.data.model.RateDto
 import com.example.foundation.data.adapter.GenericErrorMapper
@@ -56,6 +58,7 @@ val networkModule = Kodein.Module("networkModule") {
     bind<Gson>() with singleton {
         GsonBuilder()
             .registerTypeAdapter(RateDto::class.java, RateDeserializer())
+            .registerTypeAdapter(CurrenciesDto::class.java, CurrencyNamesDeserializer())
             .create()
     }
 }

@@ -1,8 +1,11 @@
 package com.example.feature_currency.data
 
+import com.example.feature_currency.data.mapper.CurrencyNamesDtoToDomainMapper
 import com.example.feature_currency.data.mapper.RatesDtoToDomainMapper
+import com.example.feature_currency.data.repository.CurrencyNameListRepositoryImpl
 import com.example.feature_currency.data.repository.RateListRepositoryImpl
 import com.example.feature_currency.data.service.RetrofitService
+import com.example.feature_currency.domain.repository.CurrencyNameListRepository
 import com.example.feature_currency.domain.repository.RateListRepository
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -20,8 +23,17 @@ val dataModule = Kodein.Module("dataModule") {
 
     bind<RatesDtoToDomainMapper>() with singleton { RatesDtoToDomainMapper() }
 
+    bind<CurrencyNamesDtoToDomainMapper>() with singleton { CurrencyNamesDtoToDomainMapper() }
+
     bind<RateListRepository>() with singleton {
         RateListRepositoryImpl(
+            api = instance(),
+            mapper = instance()
+        )
+    }
+
+    bind<CurrencyNameListRepository>() with singleton {
+        CurrencyNameListRepositoryImpl(
             api = instance(),
             mapper = instance()
         )

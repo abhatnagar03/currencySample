@@ -31,7 +31,7 @@ class RateDeserializer : JsonDeserializer<RateDto> {
         }
 
         return RateDto(
-            base = currenciesJsonObject?.get("baseCurrency")?.asString,
+            base = currenciesJsonObject?.get("baseCurrency")?.asString ?: "",
             currencies = rates
         )
 

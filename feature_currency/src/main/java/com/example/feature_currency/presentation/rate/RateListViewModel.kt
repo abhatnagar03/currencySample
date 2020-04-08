@@ -1,7 +1,7 @@
 package com.example.feature_currency.presentation.rate
 
-import com.example.feature_currency.domain.model.RateModel
-import com.example.feature_currency.domain.usecase.LoadRateListUseCase
+import com.example.feature_currency.domain.usecase.LoadCurrencyRateListUseCase
+import com.example.feature_currency.presentation.rate.model.CurrencyRateModel
 import com.example.foundation.presentation.extension.applyErrorBehavior
 import com.example.foundation.presentation.extension.applyLoadingBehavior
 import com.example.foundation.presentation.extension.applySchedulers
@@ -11,8 +11,8 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 internal class RateListViewModel(
-    private val loadRateListUseCase: LoadRateListUseCase
-) : BaseViewModel<RateModel>() {
+    private val loadCurrencyRateListUseCase: LoadCurrencyRateListUseCase
+) : BaseViewModel<List<CurrencyRateModel>>() {
 
     init {
         loadSites("EUR")
@@ -22,7 +22,7 @@ internal class RateListViewModel(
         disposable.add(
             Observable.interval(0, 1, TimeUnit.SECONDS)
                 .flatMap {
-                    return@flatMap loadRateListUseCase.execute(baseCurrency)
+                    return@flatMap loadCurrencyRateListUseCase.execute(baseCurrency)
                 }
                 .applySchedulers()
                 .applyLoadingBehavior(isLoading)

@@ -25,7 +25,7 @@ class RateListFragment : BaseContainerFragment() {
         }
 
         disposables.add(viewModel.observeSuccess().subscribe {
-            rateAdapter.rateList = it.currencies
+            rateAdapter.rateList = it.toMutableList()
         })
     }
 }

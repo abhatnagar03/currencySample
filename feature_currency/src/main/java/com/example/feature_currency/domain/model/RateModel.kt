@@ -1,11 +1,11 @@
 package com.example.feature_currency.domain.model
 
 data class RateModel(
-    val base: String? = null,
-    val currencies: MutableList<CurrencyModel>? = null
+    val base: String,
+    val currencies: MutableList<CurrencyModel>
 )
 
 data class CurrencyModel(
-    var name: String? = null,
-    var rate: Double = 0.0
+    var code: String,
+    var rate: Double
 )

@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feature_currency.R
-import com.example.feature_currency.domain.model.CurrencyModel
+import com.example.feature_currency.presentation.rate.model.CurrencyRateModel
 import com.example.foundation.presentation.GlideApp
 import com.example.foundation.presentation.viewmodel.observer
 import kotlinx.android.synthetic.main.rate_item.view.*
 
 internal class RateAdapter : RecyclerView.Adapter<RateAdapter.MyViewHolder>() {
 
-    var rateList: MutableList<CurrencyModel>? by observer(mutableListOf()) {
+    var rateList: MutableList<CurrencyRateModel>? by observer(mutableListOf()) {
         notifyDataSetChanged()
     }
 
@@ -32,18 +32,19 @@ internal class RateAdapter : RecyclerView.Adapter<RateAdapter.MyViewHolder>() {
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: CurrencyModel) {
+        fun bind(item: CurrencyRateModel) {
             GlideApp.with(itemView.context)
                 .load(
                     String.format(
                         itemView.context.getString(R.string.image_url),
-                        item.name!!.take(2)
+                        item.code.take(2)
                     )
                 )
                 .error(R.drawable.ic_image)
                 .into(itemView.flagImage)
 
             itemView.currencyName.text = item.name
+            itemView.currencyCode.text = item.code
             itemView.rate.setText(item.rate.toString())
         }
     }

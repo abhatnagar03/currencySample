@@ -1,6 +1,8 @@
-package com.example.feature_currency.presentation.rate
+package com.example.feature_currency.presentation
 
 import androidx.fragment.app.Fragment
+import com.example.feature_currency.presentation.rate.RateAdapter
+import com.example.feature_currency.presentation.rate.RateListViewModel
 import com.example.foundation.presentation.di.KotlinViewModelProvider
 import org.kodein.di.Kodein
 import org.kodein.di.android.x.AndroidLifecycleScope

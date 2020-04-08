@@ -39,7 +39,8 @@ internal class RateAdapter : RecyclerView.Adapter<RateAdapter.MyViewHolder>() {
     ) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: CurrencyModel) {
-            itemView.rate.text = item.rate.toString()
+            itemView.currencyName.text = item.name
+            itemView.rate.setText(item.rate.toString())
             itemView.setOnDebouncedClickListener {
                 onDebouncedClickListener?.invoke(
                     item
